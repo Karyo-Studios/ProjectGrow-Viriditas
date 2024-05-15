@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SplashScreenManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float delay = 3f; // Delay in seconds before transitioning to the character selection scene
+
+    private void Start()
     {
-        
+        // Invoke the LoadCharacterSelectionScene method after the specified delay
+        Invoke("LoadCharacterSelectionScene", delay);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoadCharacterSelectionScene()
     {
-        
+        // Load the character selection scene
+        SceneManager.LoadScene(1);
     }
 }
