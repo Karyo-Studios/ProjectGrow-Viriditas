@@ -3,17 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class SplashScreenManager : MonoBehaviour
 {
-    public float delay = 3f; // Delay in seconds before transitioning to the character selection scene
+    private bool canProceed = false;
 
     private void Start()
     {
-        // Invoke the LoadCharacterSelectionScene method after the specified delay
-        Invoke("LoadCharacterSelectionScene", delay);
+        // Enable the flag to allow proceeding after a short delay
+        Invoke("EnableProceed", 0.5f);
     }
 
-    private void LoadCharacterSelectionScene()
+    private void Update()
     {
-        // Load the character selection scene
-        SceneManager.LoadScene(1);
+        // Check if any key is pressed and if the flag is enabled
+        if (canProceed && Input.anyKeyDown)
+        {
+            // Load the challenge lobby scene
+            SceneManager.LoadScene("ChallengeLobby");
+        }
+    }
+
+    private void EnableProceed()
+    {
+        // Enable the flag to allow proceeding
+        canProceed = true;
     }
 }
